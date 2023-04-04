@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "369432676248",
+    "firebase_url": "https://sololife-9726b-default-rtdb.firebaseio.com",
+    "project_id": "sololife-9726b",
+    "storage_bucket": "sololife-9726b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369432676248:android:269276848c009b7cdc0ded",
+        "android_client_info": {
+          "package_name": "com.min.mysololife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369432676248-u0qjesrjp2ckbu5479a8j2aupbqppla9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8F0jLP6UDOO76jruD3zDoE3wBHdMjNuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369432676248-u0qjesrjp2ckbu5479a8j2aupbqppla9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369432676248:android:1748d5d4365524c7dc0ded",
+        "android_client_info": {
+          "package_name": "com.minhoi.forlivingalone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369432676248-u0qjesrjp2ckbu5479a8j2aupbqppla9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8F0jLP6UDOO76jruD3zDoE3wBHdMjNuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369432676248-u0qjesrjp2ckbu5479a8j2aupbqppla9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
