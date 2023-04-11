@@ -4,98 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="joinvm"
-            type="com.minhoi.forlivingalone.join.JoinViewModel" />
-    </data>
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".join.JoinActivity">
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#225C92"
-            android:orientation="vertical"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="회원가입"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/emailArea"
-                style="@style/AuthEditText"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@={joinvm.email}"
-                android:hint="email" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#999999" />
-
-            <EditText
-                android:id="@+id/passwordArea"
-                style="@style/AuthEditText"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="password"
-                android:text="@={joinvm.password}"
-                android:inputType="textPassword" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#999999" />
-
-            <EditText
-                android:id="@+id/passwordCheckArea"
-                style="@style/AuthEditText"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="passwordCheck"
-                android:text="@={joinvm.passwordCheck}"
-                android:inputType="textPassword" />
-
-
-            <Button
-                android:id="@+id/JoinBtn"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:background="#225C92"
-                android:text="회원가입"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_join" />
 </layout>

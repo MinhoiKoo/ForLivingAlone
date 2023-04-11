@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="joinvm"
+            type="com.minhoi.forlivingalone.join.JoinViewModel" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".join.JoinInputnameFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름을 입력하세요"/>
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={joinvm.name}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임을 입력하세요"/>
+
+            <EditText
+                android:id="@+id/userNickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={joinvm.nickName}"/>
+
+            <Button
+                android:id="@+id/btnName"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="완료"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_join"
+    app:startDestination="@id/joinInputIdPwFragment">
+
+    <fragment
+        android:id="@+id/joinInputNicknameFragment"
+        android:name="com.minhoi.forlivingalone.join.JoinInputnameFragment"
+        android:label="fragment_join_input_nickname"
+        tools:layout="@layout/fragment_join_input_name" />
+    <fragment
+        android:id="@+id/joinInputIdPwFragment"
+        android:name="com.minhoi.forlivingalone.join.JoinInputIdPwFragment"
+        android:label="JoinInputIdPwFragment" >
+        <action
+            android:id="@+id/action_joinInputIdPwFragment_to_joinInputNicknameFragment"
+            app:destination="@id/joinInputNicknameFragment" />
+    </fragment>
+</navigation>
