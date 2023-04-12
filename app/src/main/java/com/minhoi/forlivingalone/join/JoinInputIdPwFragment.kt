@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.FragmentJoinInputIdPwBinding
 import com.minhoi.forlivingalone.login.LoginActivity
@@ -40,8 +41,7 @@ class JoinInputIdPwFragment : Fragment() {
 
         joinViewModel.isJoinBtnClicked.observe(viewLifecycleOwner) {
             if (it) {
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_joinInputIdPwFragment_to_joinInputNicknameFragment)
+                view.findNavController().navigate(R.id.action_joinInputIdPwFragment_to_joinInputNicknameFragment)
             }
         }
         return view

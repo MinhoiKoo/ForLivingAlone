@@ -9,7 +9,11 @@
         android:id="@+id/joinInputNicknameFragment"
         android:name="com.minhoi.forlivingalone.join.JoinInputnameFragment"
         android:label="fragment_join_input_nickname"
-        tools:layout="@layout/fragment_join_input_name" />
+        tools:layout="@layout/fragment_join_input_name" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/joinInputIdPwFragment"
         android:name="com.minhoi.forlivingalone.join.JoinInputIdPwFragment"

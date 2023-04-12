@@ -12,8 +12,9 @@ import com.google.firebase.ktx.Firebase
 import com.minhoi.forlivingalone.User
 
 class JoinViewModel : ViewModel() {
-    private var auth = FirebaseAuth.getInstance()
-    private var database = Firebase.database.reference
+    private val auth = FirebaseAuth.getInstance()
+    private val uid = auth.currentUser?.uid
+    private val database = Firebase.database.reference
 
     val email : MutableLiveData<String> = MutableLiveData("")
     val password : MutableLiveData<String> = MutableLiveData("")
@@ -21,17 +22,18 @@ class JoinViewModel : ViewModel() {
     val name : MutableLiveData<String> = MutableLiveData("")
     val nickName : MutableLiveData<String> = MutableLiveData("")
 
-    private var _isJoinBtnClicked : MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _isJoinBtnClicked : MutableLiveData<Boolean> = MutableLiveData(false)
     val isJoinBtnClicked : LiveData<Boolean>
         get() = _isJoinBtnClicked
 
-    private var _isInputNameBtnClicked : MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _isInputNameBtnClicked : MutableLiveData<Boolean> = MutableLiveData(false)
     val isInputNameBtnClicked : LiveData<Boolean>
         get() = _isInputNameBtnClicked
 
     fun joinBtnClicked() {
-        Log.d("Join", email.value.toString() + password.value.toString())
-        auth.createUserWithEmailAndPassword(email.value.toString(), password.value.toString())
+        val emailValue = email.value.toString()
+        Log.d("Join", emailValue + password.value.toString())
+        auth.createUserWithEmailAndPassword(emailValue, password.value.toString())
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     auth.currentUser?.let { Log.d("Join", it.uid) }
@@ -46,7 +48,7 @@ class JoinViewModel : ViewModel() {
         // 중복된 닉네임이 아니면 DB에 저장 후 가입 완료.
         if(isValidNickName()) {
             val user = User(name.value.toString(), nickName.value.toString())
-            database.child("users").child(auth.currentUser!!.uid).setValue(user)
+            database.child("users").child(uid!!).setValue(user)
             _isInputNameBtnClicked.value = true
         }
     }
