@@ -23,8 +23,7 @@ import com.minhoi.forlivingalone.login.LoginActivity
 
 
 class MyPageFragment : Fragment() {
-    private val database = FirebaseDatabase.getInstance()
-    private val auth = FirebaseAuth.getInstance()
+
     private lateinit var binding : FragmentMyPageBinding
     private lateinit var viewModel : MyPageViewModel
 
@@ -37,7 +36,6 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        getUserName()
         val auth = FirebaseAuth.getInstance()
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_page, container, false )
         viewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
@@ -52,24 +50,13 @@ class MyPageFragment : Fragment() {
             startActivity(Intent(context, LoginActivity::class.java))
         }
 
-
+        val user = viewModel.getUserName()
+        binding.userName.text = user.name
+        binding.userNickname.text = user.nickname
         return binding.root
     }
 
-    private fun getUserName() {
-        val postListener = object : ValueEventListener {
-            // boomark_list의 내용이 변경될 때 마다 실행되는 함수.
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val user = dataSnapshot.getValue(User::class.java)!!
-                binding.userName.text = user.name
-                binding.userNickname.text = user.nickname
-                Log.d("userinData", user.toString())
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        }
-        database.getReference("users").child(auth.currentUser!!.uid).addValueEventListener(postListener)
-    }
+
 
 
 }
