@@ -50,9 +50,13 @@ class MyPageFragment : Fragment() {
             startActivity(Intent(context, LoginActivity::class.java))
         }
 
-        val user = viewModel.getUserName()
-        binding.userName.text = user.name
-        binding.userNickname.text = user.nickname
+        viewModel.getUserName { user ->
+            binding.userName.text = user.name
+            binding.userNickname.text = user.nickname
+        }
+
+
+
         return binding.root
     }
 
