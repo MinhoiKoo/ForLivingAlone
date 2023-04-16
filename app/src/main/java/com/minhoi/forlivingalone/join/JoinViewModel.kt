@@ -48,7 +48,9 @@ class JoinViewModel : ViewModel() {
         // 중복된 닉네임이 아니면 DB에 저장 후 가입 완료.
         if(isValidNickName()) {
             val user = User(name.value.toString(), nickName.value.toString())
+            Log.d("user", user.toString())
             database.child("users").child(uid!!).setValue(user)
+            Log.d("email", email.value.toString())
             _isInputNameBtnClicked.value = true
         }
     }

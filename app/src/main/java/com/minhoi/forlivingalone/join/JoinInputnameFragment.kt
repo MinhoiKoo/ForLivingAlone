@@ -37,7 +37,6 @@ class JoinInputnameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
         binding.joinvm = viewModel
 
-        viewModel.email
         binding.btnName.setOnClickListener {
             viewModel.inputNameCompleteClicked()
         }
