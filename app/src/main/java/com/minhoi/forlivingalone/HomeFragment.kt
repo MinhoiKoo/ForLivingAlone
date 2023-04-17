@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.minhoi.forlivingalone.board.BoardAdapter
+import com.minhoi.forlivingalone.board.BoardData
+import com.minhoi.forlivingalone.board.BoardListActivity
 import com.minhoi.forlivingalone.databinding.FragmentHomeBinding
 
 

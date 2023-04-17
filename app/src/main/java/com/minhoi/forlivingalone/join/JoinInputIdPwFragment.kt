@@ -32,7 +32,7 @@ class JoinInputIdPwFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_join_input_id_pw, container, false)
         val view = binding.root
 //        joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
-        joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
+            joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
 
         binding.joinvm = joinViewModel
 

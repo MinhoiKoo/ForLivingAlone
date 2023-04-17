@@ -1,4 +1,4 @@
-package com.minhoi.forlivingalone
+package com.minhoi.forlivingalone.board
 
 data class BoardData(
     val title : String,

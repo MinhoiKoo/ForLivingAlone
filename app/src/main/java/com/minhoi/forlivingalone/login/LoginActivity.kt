@@ -19,7 +19,6 @@ class LoginActivity() : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-
         binding.loginvm = loginViewModel
 
         binding.loginBtn.setOnClickListener {

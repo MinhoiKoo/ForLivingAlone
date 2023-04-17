@@ -1,10 +1,11 @@
-package com.minhoi.forlivingalone
+package com.minhoi.forlivingalone.board
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.ActivityBoardListBinding
 
 class BoardListActivity : AppCompatActivity() {

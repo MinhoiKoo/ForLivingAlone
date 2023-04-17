@@ -1,10 +1,11 @@
-package com.minhoi.forlivingalone
+package com.minhoi.forlivingalone.board
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.BoarditemBinding
 
 class BoardAdapter(private val data : ArrayList<BoardData>) : RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
@@ -17,7 +18,8 @@ class BoardAdapter(private val data : ArrayList<BoardData>) : RecyclerView.Adapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val view = DataBindingUtil.inflate<BoarditemBinding>(LayoutInflater.from(parent.context), R.layout.boarditem, parent, false)
+        val view = DataBindingUtil.inflate<BoarditemBinding>(LayoutInflater.from(parent.context),
+            R.layout.boarditem, parent, false)
         return ViewHolder(view)
     }
 
