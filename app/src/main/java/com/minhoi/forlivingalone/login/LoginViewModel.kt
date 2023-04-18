@@ -21,8 +21,6 @@ class LoginViewModel() : ViewModel() {
 
     fun loginBtnClicked() {
         loginRepository.login(email.value.toString(), password.value.toString()) { result ->
-            Log.d("login", email.value.toString() + password.value.toString())
-            Log.d("login2", result.toString())
             if (result) {
                 _isloginBtnClicked.value = true
             }
