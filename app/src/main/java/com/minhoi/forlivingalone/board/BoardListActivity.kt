@@ -1,5 +1,6 @@
 package com.minhoi.forlivingalone.board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,10 @@ class BoardListActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_board_list)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_list)
+
+        binding.boardWrite.setOnClickListener {
+            startActivity(Intent(this, BoardWriteActivity::class.java))
+        }
 
         // 임시 데이터 저장. 추후 DB에서 가져온 내용을 리사이클러뷰에 뿌릴 예정.
         val boardData = arrayListOf<BoardData>()

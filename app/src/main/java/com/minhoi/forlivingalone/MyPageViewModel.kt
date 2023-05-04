@@ -12,6 +12,7 @@ class MyPageViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private val userRef = database.getReference("users").child(auth.currentUser!!.uid)
 
+
     fun getUserName(callback: (User) -> Unit) {
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

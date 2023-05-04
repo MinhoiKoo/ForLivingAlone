@@ -55,8 +55,6 @@ class MyPageFragment : Fragment() {
             binding.userNickname.text = user.nickname
         }
 
-
-
         return binding.root
     }
 
