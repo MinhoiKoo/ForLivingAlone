@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.BoarditemBinding
 
-class BoardAdapter(private val data : ArrayList<BoardData>) : RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
+class BoardAdapter(private val data : ArrayList<BoardContent>) : RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
     class ViewHolder(binding : BoarditemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         val title : TextView = binding.boardTitle
         val content : TextView = binding.boardContent
+        val time : TextView = binding.writeDate
 
     }
 
@@ -30,5 +31,6 @@ class BoardAdapter(private val data : ArrayList<BoardData>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = data[position].title
         holder.content.text = data[position].content
+        holder.time.text = data[position].date
     }
 }

@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minhoi.forlivingalone.board.BoardAdapter
-import com.minhoi.forlivingalone.board.BoardData
+import com.minhoi.forlivingalone.board.BoardContent
 import com.minhoi.forlivingalone.board.BoardListActivity
 import com.minhoi.forlivingalone.databinding.FragmentHomeBinding
 
@@ -37,13 +37,13 @@ class HomeFragment : Fragment() {
             startActivity(Intent(activity, BoardListActivity::class.java))
         }
         // 임시 데이터 저장. 추후 DB에서 가져온 내용을 리사이클러뷰에 뿌릴 예정.
-        val boardData = arrayListOf<BoardData>()
-        boardData.add(BoardData("Welcome to community", "Hi! i'm Minhoi Koo"))
-        boardData.add(BoardData("Hello !", "Hi! i'm jjh"))
-        boardData.add(BoardData("Hello !!", "Hi! i'm kdh"))
-        boardData.add(BoardData("Hello !!!", "Hi! i'm ysh"))
+        val boardContent = arrayListOf<BoardContent>()
+        boardContent.add(BoardContent("Welcome to community", "Hi! i'm Minhoi Koo"))
+        boardContent.add(BoardContent("Hello !", "Hi! i'm jjh"))
+        boardContent.add(BoardContent("Hello !!", "Hi! i'm kdh"))
+        boardContent.add(BoardContent("Hello !!!", "Hi! i'm ysh"))
 
-        binding.boardRv.adapter = BoardAdapter(boardData)
+        binding.boardRv.adapter = BoardAdapter(boardContent)
         binding.boardRv.layoutManager = LinearLayoutManager(context)
         return binding.root
     }
