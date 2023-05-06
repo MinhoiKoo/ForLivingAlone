@@ -19,4 +19,11 @@ class Ref {
 
         return dateFormat
     }
+
+    fun getDate() : String {
+        val currentDateTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("MM.dd", Locale.KOREA).format(currentDateTime)
+
+        return dateFormat
+    }
 }

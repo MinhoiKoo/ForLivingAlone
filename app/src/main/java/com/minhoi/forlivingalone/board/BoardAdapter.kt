@@ -1,6 +1,7 @@
 package com.minhoi.forlivingalone.board
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -13,9 +14,18 @@ class BoardAdapter(private val data : ArrayList<BoardContent>) : RecyclerView.Ad
 
         val title : TextView = binding.boardTitle
         val content : TextView = binding.boardContent
-        val time : TextView = binding.writeDate
+        val date : TextView = binding.writeDate
 
     }
+
+    interface OnItemClickListener {
+        fun onClick(v : View, psotion : Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+    private lateinit var itemClickListener : OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -29,8 +39,12 @@ class BoardAdapter(private val data : ArrayList<BoardContent>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
         holder.title.text = data[position].title
         holder.content.text = data[position].content
-        holder.time.text = data[position].date
+        holder.date.text = data[position].date
     }
 }

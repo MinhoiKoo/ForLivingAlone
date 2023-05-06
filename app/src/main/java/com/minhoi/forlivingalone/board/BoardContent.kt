@@ -6,5 +6,6 @@ data class BoardContent(
     val title : String = "",
     val content : String = "",
     val uid : String = "",
+    val time : String = "",
     val date : String = ""
 )

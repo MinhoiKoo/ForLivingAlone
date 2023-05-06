@@ -9,10 +9,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.minhoi.forlivingalone.board.BoardAdapter
 import com.minhoi.forlivingalone.board.BoardContent
 import com.minhoi.forlivingalone.board.BoardListActivity
 import com.minhoi.forlivingalone.databinding.FragmentHomeBinding
+import com.minhoi.forlivingalone.utils.Ref
+import com.minhoi.forlivingalone.utils.Ref.Companion.boardRef
 
 
 class HomeFragment : Fragment() {
@@ -36,14 +41,32 @@ class HomeFragment : Fragment() {
         binding.boardPlusBtn.setOnClickListener {
             startActivity(Intent(activity, BoardListActivity::class.java))
         }
-        // 임시 데이터 저장. 추후 DB에서 가져온 내용을 리사이클러뷰에 뿌릴 예정.
-        val boardContent = arrayListOf<BoardContent>()
-        boardContent.add(BoardContent("Welcome to community", "Hi! i'm Minhoi Koo"))
-        boardContent.add(BoardContent("Hello !", "Hi! i'm jjh"))
-        boardContent.add(BoardContent("Hello !!", "Hi! i'm kdh"))
-        boardContent.add(BoardContent("Hello !!!", "Hi! i'm ysh"))
 
-        binding.boardRv.adapter = BoardAdapter(boardContent)
+        val boardContentList = arrayListOf<BoardContent>()
+
+        val rvAdapter = BoardAdapter(boardContentList)
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var count = 0
+                boardContentList.clear()
+                for (postSnapshot in dataSnapshot.children) {
+                    val boardData = postSnapshot.getValue(BoardContent::class.java)
+                    if (boardData != null && count <=4) {
+                        boardContentList.add(BoardContent(boardData.title, boardData.content))
+                        count += 1
+                    }
+                }
+                rvAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        boardRef.addValueEventListener(postListener)
+
+        binding.boardRv.adapter = rvAdapter
         binding.boardRv.layoutManager = LinearLayoutManager(context)
         return binding.root
     }
