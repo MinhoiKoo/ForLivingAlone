@@ -9,11 +9,10 @@
 
         <TextView
             android:id="@+id/boardTitle"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="25dp"
             android:text="title"
             android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,8 +28,8 @@
             app:layout_constraintTop_toBottomOf="@+id/boardTitle" />
 
         <TextView
-            android:id="@+id/writeDate"
-            android:layout_width="60dp"
+            android:id="@+id/writedDate"
+            android:layout_width="70dp"
             android:layout_height="20dp"
             android:text="Date"
             android:textSize="17sp"

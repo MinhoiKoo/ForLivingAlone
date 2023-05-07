@@ -2,6 +2,7 @@ package com.minhoi.forlivingalone.board
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -37,6 +38,7 @@ class BoardWriteActivity : AppCompatActivity() {
             val date = ref.getDate()
             val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
             database.push().setValue(BoardContent(title, content, uid, time, date))
+            Log.d("date", date)
             finish()
         }
 

@@ -14,12 +14,12 @@ class BoardAdapter(private val data : ArrayList<BoardContent>) : RecyclerView.Ad
 
         val title : TextView = binding.boardTitle
         val content : TextView = binding.boardContent
-        val date : TextView = binding.writeDate
+        val date : TextView = binding.writedDate
 
     }
 
     interface OnItemClickListener {
-        fun onClick(v : View, psotion : Int)
+        fun onClick(v : View, position : Int)
     }
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {

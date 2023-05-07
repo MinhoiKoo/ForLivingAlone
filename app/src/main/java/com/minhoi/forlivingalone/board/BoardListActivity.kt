@@ -16,6 +16,7 @@ import com.minhoi.forlivingalone.utils.Ref.Companion.boardRef
 class BoardListActivity : AppCompatActivity() {
 
     private val boardContentList = arrayListOf<BoardContent>()
+    private val boardKeyList = arrayListOf<String>()
     private val rvAdapter = BoardAdapter(boardContentList)
 
     private lateinit var binding : ActivityBoardListBinding
@@ -32,8 +33,12 @@ class BoardListActivity : AppCompatActivity() {
         boardListRead()
 
         rvAdapter.setItemClickListener(object : BoardAdapter.OnItemClickListener {
-            override fun onClick(v: View, psotion: Int) {
+            override fun onClick(v: View, position: Int) {
                 Log.d("recycler", "clicked!!")
+                // 게시글의 Key만 Intent로 넘기고 Activity에서 DB 접근해서 글 읽어옴.
+                val intent = Intent(applicationContext, BoardContentActivity::class.java)
+                intent.putExtra("key", boardKeyList[position])
+                startActivity(intent)
             }
         })
         val rv = binding.boardListRv
@@ -47,10 +52,13 @@ class BoardListActivity : AppCompatActivity() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 boardContentList.clear()
+                boardKeyList.clear()
                 for (postSnapshot in dataSnapshot.children) {
                     val boardData = postSnapshot.getValue(BoardContent::class.java)
+                    // 게시글의 정보와 게시글의 Key값 DB에 삽입
                     if (boardData != null) {
-                        boardContentList.add(BoardContent(boardData.title, boardData.content))
+                        boardContentList.add(BoardContent(boardData.title, boardData.content, boardData.uid, boardData.time, boardData.date ))
+                        boardKeyList.add(postSnapshot.key.toString())
                     }
                 }
                 rvAdapter.notifyDataSetChanged()
