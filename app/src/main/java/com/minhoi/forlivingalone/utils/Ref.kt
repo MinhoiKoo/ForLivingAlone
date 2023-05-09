@@ -12,6 +12,7 @@ class Ref {
         val auth = FirebaseAuth.getInstance()
         val database = Firebase.database
         val boardRef = database.getReference("board")
+        val userRef = database.getReference("users")
     }
 
     fun getTime() : String {

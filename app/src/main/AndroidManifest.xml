@@ -15,6 +15,9 @@
             android:name=".mypage.PWChangeActivity"
             android:exported="false" />
         <activity
+            android:name=".mypage.NickNameChangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.BoardContentActivity"
             android:exported="false" />
         <activity

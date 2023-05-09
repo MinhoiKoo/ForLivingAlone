@@ -7,19 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.FragmentMyPageBinding
 import com.minhoi.forlivingalone.login.LoginActivity
+import com.minhoi.forlivingalone.utils.Ref
 
 
 class MyPageFragment : Fragment() {
 
     private lateinit var binding : FragmentMyPageBinding
     private lateinit var viewModel : MyPageViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,7 +30,7 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val auth = FirebaseAuth.getInstance()
+        val auth = Ref.auth
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false )
         viewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
 
@@ -49,10 +50,14 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }
 
-        viewModel.getUserName { user ->
-            binding.userName.text = user.name
-            binding.userNickname.text = user.nickname
+        viewModel.userName.observe(viewLifecycleOwner) {
+            binding.userName.text = it
+
         }
+        viewModel.userNickName.observe(viewLifecycleOwner) {
+            binding.userNickname.text = it
+        }
+
 
         return binding.root
     }
