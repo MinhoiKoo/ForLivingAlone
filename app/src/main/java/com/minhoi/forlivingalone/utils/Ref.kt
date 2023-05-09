@@ -1,5 +1,6 @@
 package com.minhoi.forlivingalone.utils
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -8,9 +9,9 @@ import java.util.*
 class Ref {
 
     companion object {
+        val auth = FirebaseAuth.getInstance()
         val database = Firebase.database
         val boardRef = database.getReference("board")
-
     }
 
     fun getTime() : String {

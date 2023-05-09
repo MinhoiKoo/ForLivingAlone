@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.minhoi.forlivingalone.MyPageFragment"
+        android:name="com.minhoi.forlivingalone.mypage.MyPageFragment"
         android:label="fragment_my_page"
         tools:layout="@layout/fragment_my_page" >
         <action

@@ -1,4 +1,4 @@
-package com.minhoi.forlivingalone
+package com.minhoi.forlivingalone.mypage
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.minhoi.forlivingalone.User
 
 class MyPageViewModel : ViewModel() {
     private val database = FirebaseDatabase.getInstance()
