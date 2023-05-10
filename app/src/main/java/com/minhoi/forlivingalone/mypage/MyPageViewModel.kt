@@ -1,5 +1,6 @@
 package com.minhoi.forlivingalone.mypage
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,9 +14,6 @@ import com.minhoi.forlivingalone.UserRepository
 
 class MyPageViewModel : ViewModel() {
     private val userRepository = UserRepository()
-    private val database = FirebaseDatabase.getInstance()
-    private val auth = FirebaseAuth.getInstance()
-    private val userRef = database.getReference("users").child(auth.currentUser!!.uid)
 
     private var _userName = MutableLiveData<String>()
     val userName : LiveData<String>

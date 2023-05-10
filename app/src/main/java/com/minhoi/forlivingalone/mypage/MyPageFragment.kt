@@ -2,6 +2,7 @@ package com.minhoi.forlivingalone.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.databinding.FragmentMyPageBinding
@@ -21,6 +23,7 @@ class MyPageFragment : Fragment() {
 
     private lateinit var binding : FragmentMyPageBinding
     private lateinit var viewModel : MyPageViewModel
+    private lateinit var userNickNameObserver: Observer<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,9 +55,8 @@ class MyPageFragment : Fragment() {
 
         viewModel.userName.observe(viewLifecycleOwner) {
             binding.userName.text = it
-
         }
-        viewModel.userNickName.observe(viewLifecycleOwner) {
+        userNickNameObserver = Observer {
             binding.userNickname.text = it
         }
 
@@ -62,7 +64,15 @@ class MyPageFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("onResume", "onResume()")
+        viewModel.userName.observe(viewLifecycleOwner) {
+            binding.userName.text = it
 
-
+        }
+        viewModel.userNickName.observe(viewLifecycleOwner, userNickNameObserver)
+        Log.d("name", viewModel.userNickName.value.toString())
+    }
 
 }

@@ -24,8 +24,4 @@ class NickNameChangeViewModel : ViewModel() {
         isValidNickName.value = true
     }
 
-
-
-
-
 }
