@@ -1,5 +1,6 @@
 package com.minhoi.forlivingalone.board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,13 +57,16 @@ class BoardContentActivity : AppCompatActivity() {
 
         val alertDialog = mBuilder.show()
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
+            val intent = Intent(this, BoardEditActivity::class.java)
+            intent.putExtra("boardKey", boardKey)
+            startActivity(intent)
+            alertDialog.dismiss()
 
         }
 
         alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
 
             //삭제하는지 한번 더 확인 Dialog 추가 예정
-
             Ref.boardRef.child(boardKey).removeValue()
             finish()
 

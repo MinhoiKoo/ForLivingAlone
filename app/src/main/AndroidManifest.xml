@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ForLivingAlone"
         tools:targetApi="31">
         <activity
+            android:name=".board.BoardEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".mypage.PWChangeActivity"
             android:exported="false" />
         <activity
