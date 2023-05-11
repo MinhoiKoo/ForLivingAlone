@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.google.firebase.database.DataSnapshot
@@ -30,6 +31,12 @@ class BoardContentActivity : AppCompatActivity() {
             showDialog()
         }
 
+        getBoardData()
+
+    }
+
+    private fun getBoardData() {
+
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val boardData = dataSnapshot.getValue(BoardContent::class.java)
@@ -37,6 +44,12 @@ class BoardContentActivity : AppCompatActivity() {
                     binding.boardTitle.text = boardData.title
                     binding.boardContent.text = boardData.content
                     binding.boardWritedTime.text = boardData.time
+
+                    val userUid = Ref.auth.currentUser?.uid.toString()
+                    val writedUserUid = boardData.uid
+                    if(userUid.equals(writedUserUid)) {
+                        binding.boardDialogBtn.isVisible = true
+                    }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
@@ -46,10 +59,10 @@ class BoardContentActivity : AppCompatActivity() {
         if (boardKey != null) {
             Ref.boardRef.child(boardKey).addValueEventListener(postListener)
         }
-
     }
 
     private fun showDialog() {
+
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.board_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)

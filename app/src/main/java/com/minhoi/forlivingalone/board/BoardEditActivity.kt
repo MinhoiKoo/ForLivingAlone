@@ -29,6 +29,12 @@ class BoardEditActivity : AppCompatActivity() {
             finish()
         }
 
+        getBoardData()
+
+
+    }
+
+    private fun getBoardData() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val boardData = dataSnapshot.getValue(BoardContent::class.java)
@@ -44,9 +50,7 @@ class BoardEditActivity : AppCompatActivity() {
         if (boardKey != null) {
             Ref.boardRef.child(boardKey).addValueEventListener(postListener)
         }
-
     }
-
     private fun editBoardData() {
         val title = binding.boardEditTitle.text.toString()
         val content = binding.boardEditWriteContent.text.toString()

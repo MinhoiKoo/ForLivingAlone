@@ -27,6 +27,7 @@
             <ImageButton
                 android:id="@+id/boardDialogBtn"
                 android:src="@drawable/dialogbtn"
+                android:visibility="invisible"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
