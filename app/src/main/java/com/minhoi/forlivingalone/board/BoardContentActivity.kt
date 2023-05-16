@@ -138,22 +138,5 @@ class BoardContentActivity : AppCompatActivity() {
         if (boardKey != null) {
             Ref.commentRef.child(boardKey).addValueEventListener(postListener)
         }
-//        Ref.commentRef.child(boardKey).addListenerForSingleValueEvent(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                commentList.clear()
-//                for (dataModel in snapshot.children) {
-//                    val commentData = dataModel.getValue(CommentData::class.java)
-//                    if (commentData != null) {
-//                        commentList.add(commentData)
-//                        Log.d("comment", commentData.content)
-//                    }
-//                }
-//                commentListAdapter.notifyDataSetChanged()
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
     }
 }

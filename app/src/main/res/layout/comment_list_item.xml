@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="35dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,12 +20,11 @@
 
         <ImageButton
             android:id="@+id/commentDialogBtn"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="5dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="88dp"
             android:src="@drawable/dialogbtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="comment..."
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.utils.Ref
 
@@ -40,6 +41,11 @@ class CommentListAdapter (private val commentList : MutableList<CommentData>, pr
         time?.text = commentList[position].writeTime
 
         val btn = view?.findViewById<ImageButton>(R.id.commentDialogBtn)
+        if(commentList[position].uid.equals(Ref.auth.currentUser?.uid.toString())) {
+            if (btn != null) {
+                btn.isVisible = true
+            }
+        }
         btn?.setOnClickListener {
             showPopupMenu(btn, position)
         }
@@ -65,7 +71,6 @@ class CommentListAdapter (private val commentList : MutableList<CommentData>, pr
                 else -> false
             }
         }
-
-        popupMenu.show()
+            popupMenu.show()
     }
 }
