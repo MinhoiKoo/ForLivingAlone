@@ -45,6 +45,7 @@ class JoinInputnameFragment : Fragment() {
             if(it) {
                 //닉네임, 이름 설정 완료.
                 startActivity(Intent(getActivity(), MainActivity::class.java))
+                activity?.finish()
 
             }
         }

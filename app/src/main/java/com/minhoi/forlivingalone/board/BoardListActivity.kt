@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
@@ -30,7 +29,7 @@ class BoardListActivity : AppCompatActivity() {
             startActivity(Intent(this, BoardWriteActivity::class.java))
         }
 
-        boardListRead()
+        getBoardList()
 
         rvAdapter.setItemClickListener(object : BoardAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
@@ -48,7 +47,7 @@ class BoardListActivity : AppCompatActivity() {
 
     }
 
-    private fun boardListRead() {
+    private fun getBoardList() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 boardContentList.clear()

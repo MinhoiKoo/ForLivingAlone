@@ -3,6 +3,7 @@ package com.minhoi.forlivingalone.board
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
@@ -13,12 +14,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.minhoi.forlivingalone.R
+import com.minhoi.forlivingalone.User
 import com.minhoi.forlivingalone.databinding.ActivityBoardContentBinding
 import com.minhoi.forlivingalone.utils.Ref
 
 class BoardContentActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBoardContentBinding
     private lateinit var boardKey : String
+    private lateinit var commentList : MutableList<CommentData>
+    private lateinit var commentListAdapter: CommentListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,12 +35,23 @@ class BoardContentActivity : AppCompatActivity() {
             showDialog()
         }
 
+        binding.commentWriteBtn.setOnClickListener {
+            addComment()
+            binding.commentWriteArea.setText("")
+        }
+
+        commentList = mutableListOf()
+
         getBoardData()
+        getComment()
+
+        commentListAdapter = CommentListAdapter(commentList)
+        binding.commentListView.adapter = commentListAdapter
+
 
     }
 
     private fun getBoardData() {
-
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val boardData = dataSnapshot.getValue(BoardContent::class.java)
@@ -87,4 +102,49 @@ class BoardContentActivity : AppCompatActivity() {
 
     }
 
+    private fun addComment() {
+        val ref = Ref()
+        val comment = binding.commentWriteArea.text.toString()
+        val time = ref.getTime()
+        Ref.commentRef.child(boardKey).push().setValue(CommentData(comment, time))
+    }
+
+    private fun getComment() {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                commentList.clear()
+                for (dataModel in dataSnapshot.children) {
+                    val commentData = dataModel.getValue(CommentData::class.java)
+                    if (commentData != null) {
+                        commentList.add(commentData)
+                        Log.d("comment", commentData.content)
+                    }
+                }
+                commentListAdapter.notifyDataSetChanged()
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        if (boardKey != null) {
+            Ref.commentRef.child(boardKey).addValueEventListener(postListener)
+        }
+//        Ref.commentRef.child(boardKey).addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                commentList.clear()
+//                for (dataModel in snapshot.children) {
+//                    val commentData = dataModel.getValue(CommentData::class.java)
+//                    if (commentData != null) {
+//                        commentList.add(commentData)
+//                        Log.d("comment", commentData.content)
+//                    }
+//                }
+//                commentListAdapter.notifyDataSetChanged()
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//        })
+    }
 }
