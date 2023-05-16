@@ -14,7 +14,6 @@ class NickNameChangeViewModel : ViewModel() {
     private val currentUserRef = Ref.userRef.child(Ref.auth.currentUser?.uid.toString())
     val nickName = MutableLiveData<String>()
 
-
     var isValidNickName  = MutableLiveData(false)
 
     fun changeBtnClicked() {

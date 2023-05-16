@@ -34,9 +34,11 @@ class CommentListAdapter (private val commentList : MutableList<CommentData>, pr
         if (view == null) {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item, null)
         }
+        val writer = view?.findViewById<TextView>(R.id.commentWriter)
         val content = view?.findViewById<TextView>(R.id.commentContent)
         val time = view?.findViewById<TextView>(R.id.commentWriteTime)
 
+        writer?.text = commentList[position].writer
         content?.text = commentList[position].content
         time?.text = commentList[position].writeTime
 

@@ -113,7 +113,19 @@ class BoardContentActivity : AppCompatActivity() {
         val comment = binding.commentWriteArea.text.toString()
         val time = ref.getTime()
         val uid = Ref.auth.currentUser?.uid.toString()
-        Ref.commentRef.child(boardKey).push().setValue(CommentData("",comment, time, uid, boardKey))
+        userRepository.getUser(
+            onSuccess = { user ->
+                val userNickName = user.nickname
+                val commentData = CommentData(userNickName, comment, time, uid, boardKey)
+                Ref.commentRef.child(boardKey).push().setValue(commentData)
+                Log.d("nick", userNickName)
+            },
+            onError = {
+                val userNickName = "알 수 없음"
+                val commentData = CommentData(userNickName, comment, time, uid, boardKey)
+                Ref.commentRef.child(boardKey).push().setValue(commentData)
+            }
+        )
     }
 
     private fun getComment() {
@@ -124,6 +136,7 @@ class BoardContentActivity : AppCompatActivity() {
                 for (dataModel in dataSnapshot.children) {
                     val commentData = dataModel.getValue(CommentData::class.java)
                     if (commentData != null) {
+
                         commentList.add(commentData)
                         commentKeyList.add(dataModel.key.toString())
                         Log.d("comment", commentData.content)
