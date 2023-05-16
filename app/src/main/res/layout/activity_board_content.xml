@@ -68,12 +68,19 @@
                     android:layout_height="25dp"
                     android:text="writedtime"
                     android:textSize="15sp" />
-                
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="댓글"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
                 <ListView
                     android:id="@+id/commentListView"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
-                    android:background="#999999"/>
+                    android:background="#999999" />
             </LinearLayout>
         </ScrollView>
 

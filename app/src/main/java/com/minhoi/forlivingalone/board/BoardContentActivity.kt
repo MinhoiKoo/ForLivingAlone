@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.minhoi.forlivingalone.R
 import com.minhoi.forlivingalone.User
+import com.minhoi.forlivingalone.UserRepository
 import com.minhoi.forlivingalone.databinding.ActivityBoardContentBinding
 import com.minhoi.forlivingalone.utils.Ref
 
@@ -22,10 +23,13 @@ class BoardContentActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBoardContentBinding
     private lateinit var boardKey : String
     private lateinit var commentList : MutableList<CommentData>
+    private lateinit var commentKeyList : MutableList<String>
     private lateinit var commentListAdapter: CommentListAdapter
+    private lateinit var userRepository: UserRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        userRepository = UserRepository()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_content)
 
         val intent = getIntent()
@@ -40,12 +44,14 @@ class BoardContentActivity : AppCompatActivity() {
             binding.commentWriteArea.setText("")
         }
 
+
         commentList = mutableListOf()
+        commentKeyList = mutableListOf()
 
         getBoardData()
         getComment()
 
-        commentListAdapter = CommentListAdapter(commentList)
+        commentListAdapter = CommentListAdapter(commentList, commentKeyList)
         binding.commentListView.adapter = commentListAdapter
 
 
@@ -106,17 +112,20 @@ class BoardContentActivity : AppCompatActivity() {
         val ref = Ref()
         val comment = binding.commentWriteArea.text.toString()
         val time = ref.getTime()
-        Ref.commentRef.child(boardKey).push().setValue(CommentData(comment, time))
+        val uid = Ref.auth.currentUser?.uid.toString()
+        Ref.commentRef.child(boardKey).push().setValue(CommentData("",comment, time, uid, boardKey))
     }
 
     private fun getComment() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 commentList.clear()
+                commentKeyList.clear()
                 for (dataModel in dataSnapshot.children) {
                     val commentData = dataModel.getValue(CommentData::class.java)
                     if (commentData != null) {
                         commentList.add(commentData)
+                        commentKeyList.add(dataModel.key.toString())
                         Log.d("comment", commentData.content)
                     }
                 }

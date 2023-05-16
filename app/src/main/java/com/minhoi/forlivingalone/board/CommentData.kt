@@ -1,6 +1,9 @@
 package com.minhoi.forlivingalone.board
 
 data class CommentData(
-    val content : String = "" ,
-    val writeTime : String = ""
+    val writer : String = "",
+    val content : String = "",
+    val writeTime : String = "",
+    val uid : String = "",
+    val boardKey : String = ""
 )
