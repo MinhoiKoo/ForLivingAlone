@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
+import android.widget.ListView
+import android.widget.ScrollView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -44,15 +48,29 @@ class BoardContentActivity : AppCompatActivity() {
             binding.commentWriteArea.setText("")
         }
 
-
         commentList = mutableListOf()
         commentKeyList = mutableListOf()
 
+        commentListAdapter = CommentListAdapter(commentList, commentKeyList)
+        val cLV : ListView = binding.commentListView
+        cLV.adapter = commentListAdapter
+
+        cLV.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+
+                binding.contentScrollView.requestDisallowInterceptTouchEvent(true)
+
+                return false
+            }
+
+        })
+
+
         getBoardData()
         getComment()
-
-        commentListAdapter = CommentListAdapter(commentList, commentKeyList)
-        binding.commentListView.adapter = commentListAdapter
+//
+//        commentListAdapter = CommentListAdapter(commentList, commentKeyList)
+//        binding.commentListView.adapter = commentListAdapter
 
 
     }

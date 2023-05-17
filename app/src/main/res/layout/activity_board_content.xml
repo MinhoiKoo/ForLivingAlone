@@ -4,18 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".board.BoardContentActivity">
 
         <ScrollView
+            android:id="@+id/contentScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".board.BoardContentActivity"
                 android:orientation="vertical">
 
 
@@ -80,6 +82,7 @@
                     android:id="@+id/commentListView"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
+                    android:layout_marginBottom="50dp"
                     android:background="#999999" />
             </LinearLayout>
         </ScrollView>
@@ -87,23 +90,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:layout_alignParentBottom="true">
+            app:layout_constraintBottom_toBottomOf="parent">
 
 
             <EditText
                 android:id="@+id/commentWriteArea"
                 android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:hint="댓글을 입력하세요"/>
+                android:hint="댓글을 입력하세요" />
 
             <Button
                 android:id="@+id/commentWriteBtn"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:text="입력"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:text="입력" />
 
         </LinearLayout>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
