@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
+            app:destination="@id/myPageFragment"
+            app:popUpTo="@id/homeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
@@ -21,7 +22,9 @@
         tools:layout="@layout/fragment_my_page" >
         <action
             android:id="@+id/action_myPageFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_myPageFragment_self"
             app:destination="@id/myPageFragment" />
