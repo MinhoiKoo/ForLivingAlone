@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -31,6 +32,8 @@ class MyPageFragment : Fragment() {
     private lateinit var viewModel : MyPageViewModel
     private lateinit var userNickNameObserver: Observer<String>
     private val storage = Firebase.storage
+    private val userUid = Ref.auth.currentUser?.uid.toString()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +49,7 @@ class MyPageFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false )
         viewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
 
+        getImageData()
         binding.homeLogo.setOnClickListener {
             it.findNavController().navigate(R.id.action_myPageFragment_to_homeFragment)
 
@@ -95,16 +99,27 @@ class MyPageFragment : Fragment() {
         Log.d("name", viewModel.userNickName.value.toString())
     }
 
+    private fun getImageData() {
+        val storage = Firebase.storage.reference.child("images").child(userUid)
+
+        val imageView = binding.userImage
+
+        storage.downloadUrl.addOnCompleteListener { task ->
+            if(task.isSuccessful) {
+                Glide.with(this).load(task.result).into(imageView)
+            }
+        }
+    }
+
     private fun uploadUserImage(key : Uri) {
 
-        val userUid = Ref.auth.currentUser?.uid.toString()
 
         // Firebase Storage에 이미지 업로드
         val storageRef = FirebaseStorage.getInstance().reference
         val imagesRef = storageRef.child("images")
 
         //사용자의 uid값으로 이미지 이름 설정.
-        val imageFileName = userUid + ".png"
+        val imageFileName = userUid
         val imageRef = imagesRef.child(imageFileName)
 
         val uploadTask = key?.let { imageRef.putFile(it) }
