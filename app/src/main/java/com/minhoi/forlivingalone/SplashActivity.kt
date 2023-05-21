@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.minhoi.forlivingalone.login.LoginActivity
+import com.minhoi.forlivingalone.utils.Ref
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
@@ -16,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        auth = FirebaseAuth.getInstance()
+        auth = Ref.auth
 
         val currentUser = auth.currentUser
         if(currentUser == null) {

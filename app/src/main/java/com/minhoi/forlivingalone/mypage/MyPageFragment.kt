@@ -53,6 +53,11 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.passWordChange.setOnClickListener {
+            val intent = Intent(activity, PWChangeActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.userName.observe(viewLifecycleOwner) {
             binding.userName.text = it
         }
