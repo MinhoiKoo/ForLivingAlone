@@ -59,8 +59,11 @@
             android:id="@+id/changePasswordBtn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/btn_radius"
             android:layout_margin="35dp"
-            android:text="비밀번호 변경"/>
+            android:text="비밀번호 변경"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 </layout>

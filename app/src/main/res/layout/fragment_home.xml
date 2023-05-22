@@ -83,6 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:orientation="horizontal"
@@ -92,35 +93,40 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/homeLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/homelogo" />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/home"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/friends" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/friendlogo" />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/location" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/nearlogo" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/chatlogo" />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/chat" />
 
                 <ImageView
                     android:id="@+id/myPageImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/mypagelogo" />
+                    android:layout_margin="10dp"
+                    android:src="@drawable/person" />
 
             </LinearLayout>
 

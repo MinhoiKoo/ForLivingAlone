@@ -37,28 +37,27 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"/>
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/inputChangeNickName"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:hint="변경할 닉네임"
+            android:text="@={changeNickVM.nickName}"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/btnChangeNickName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="50dp"
+            android:layout_margin="50dp"
+            android:background="@drawable/btn_radius"
+            android:text="변경"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"/>
 
-            <EditText
-                android:id="@+id/inputChangeNickName"
-                android:layout_width="230dp"
-                android:layout_height="50dp"
-                android:hint="변경할 닉네임"
-                android:text="@={changeNickVM.nickName}"
-                android:layout_margin="10dp"/>
 
-            <Button
-                android:id="@+id/btnChangeNickName"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:text="입력"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
 
 
     </LinearLayout>
